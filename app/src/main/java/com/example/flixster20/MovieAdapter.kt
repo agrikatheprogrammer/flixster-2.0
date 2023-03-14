@@ -14,7 +14,6 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 
 private const val TAG = "MovieAdapter"
 const val MOVIE_EXTRA = "MOVIE_EXTRA"
@@ -52,10 +51,6 @@ class MovieAdapter(private val context : Context, private val movies: List<Movie
             Glide.with(context)
                 .load(movie.posterImageURL)
                 .centerCrop()
-                .transform(RoundedCornersTransformation(30,10))
-                .placeholder(R.drawable.hourglass)
-                .error(R.drawable.error)
-
                 .into(ivPoster)
         }
 
@@ -64,9 +59,6 @@ class MovieAdapter(private val context : Context, private val movies: List<Movie
             val movie = movies[adapterPosition]
             Toast.makeText(context, movie.title, Toast.LENGTH_SHORT).show()
             //2. Use the intent system to navigate to the new activity
-            val intent = Intent(context, DetailActivity::class.java)
-            intent.putExtra(MOVIE_EXTRA, movie)
-            context.startActivity(intent)
         }
     }
 }
