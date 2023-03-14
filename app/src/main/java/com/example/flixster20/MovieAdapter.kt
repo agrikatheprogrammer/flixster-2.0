@@ -51,6 +51,8 @@ class MovieAdapter(private val context : Context, private val movies: List<Movie
             Glide.with(context)
                 .load(movie.posterImageURL)
                 .centerCrop()
+                .placeholder(R.drawable.hourglass)
+                .error(R.drawable.error)
                 .into(ivPoster)
         }
 
